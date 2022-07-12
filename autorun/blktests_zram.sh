@@ -4,7 +4,13 @@
 
 _vm_ar_env_check || exit 1
 
-set -x
+modprobe virtio_blk 2>/dev/null
+modprobe virtio_scsi 2>/dev/null
+mkdir /root/shared 2>/dev/null
+mount -t 9p -o trans=virtio fs0 /root/shared 2>/dev/null
+
+cd "$BLKTESTS_SRC" || _fatal
+return
 
 modprobe zram num_devices="1" || _fatal "failed to load zram module"
 
@@ -19,7 +25,6 @@ set +x
 
 echo "/dev/zram0 provisioned and ready for ${BLKTESTS_SRC}/check"
 
-cd "$BLKTESTS_SRC" || _fatal
 if [ -n "$BLKTESTS_AUTORUN_CMD" ]; then
 	eval "$BLKTESTS_AUTORUN_CMD"
 fi
