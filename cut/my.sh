@@ -10,7 +10,7 @@ _rt_require_dracut_args "$RAPIDO_DIR/autorun/my.sh" "$@"
 #_rt_require_networking
 #  yum install systemd-networkd
 
-"$DRACUT" --install "netstat sysctl lsmod ip ping lspci lsscsi zcat \
+"$DRACUT" --install "udevadm netstat sysctl lsmod ip ping lspci lsscsi zcat \
            tail blockdev ps rmdir resize dd vim grep find df sha256sum \
 		   getopt tput wc column blktrace losetup parted truncate \
 		   lsblk strace which awk bc touch cut chmod true false mktemp \
