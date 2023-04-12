@@ -59,7 +59,7 @@ nvmet_cfs="/sys/kernel/config/nvmet/"
 nvmet_subsystem="nvmf-test"
 
 cfg_ips=()
-_vm_ar_cfg_ips "1" cfg_ips
+_vm_ar_cfg_ips "1" cfg_ips "nomask"
 (( ${#cfg_ips[@]} > 0 )) || _fatal "vm1 lacks IP address config"
 vm1_ip=${cfg_ips[0]}
 
