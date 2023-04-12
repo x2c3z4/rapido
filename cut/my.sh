@@ -10,14 +10,15 @@ _rt_require_dracut_args "$RAPIDO_DIR/autorun/my.sh" "$@"
 #_rt_require_networking
 #  yum install systemd-networkd
 
-"$DRACUT" --install "udevadm netstat sysctl lsmod ip ping lspci lsscsi zcat \
+"$DRACUT" --install "udevadm netstat sysctl lsmod ip ping lspci lsscsi zcat mkfs.ext4 fstrim \
            tail blockdev ps rmdir resize dd vim grep find df sha256sum \
 		   getopt tput wc column blktrace losetup parted truncate \
 		   lsblk strace which awk bc touch cut chmod true false mktemp \
 		   killall id sort uniq date expr tac diff head dirname seq \
-		   basename tee egrep hexdump sync fio logger cmp stat nproc \
+		   basename tee egrep hexdump sync logger cmp stat nproc \
 		   xfs_io modinfo blkdiscard realpath timeout nvme" \
     --include "/usr/lib64/fio/fio-libaio.so" "/usr/lib64/fio/fio-libaio.so" \
+    --include "/root/smartx/kvm-bench/$(uname -m)/guest/fio-vhost" "/usr/bin/fio" \
 	--modules "base" \
 	"${DRACUT_RAPIDO_ARGS[@]}" \
 	"$DRACUT_OUT" || _fail "dracut failed"
