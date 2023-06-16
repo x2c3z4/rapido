@@ -12,4 +12,5 @@ mount -t debugfs debugfs /sys/kernel/debug/ 2>/dev/null
 ip link set lo up 2>/dev/null
 
 cd "/root" || _fatal
+[ -f /root/shared/autorun.sh ] && /root/shared/autorun.sh
 return
